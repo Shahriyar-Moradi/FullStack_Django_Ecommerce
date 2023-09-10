@@ -1,0 +1,69 @@
+
+{% load static%}
+
+<nav class="navbar navbar-light navbar-expand-lg sticky-top" style="background-color: #001c54;">
+  <div class="container-fluid">
+{#    <a class="navbar-brand" href="{% url 'index' %}">#}
+{#      <img src="{% static 'img/logo.png' %}" class="logo" alt="">#}
+{#    </a>#}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+{#        <a style="margin-right: 800px" href="{% url 'index' %}">#}
+{#        <a style="margin-right: 800px" href="{% url 'index' %}">#}
+{#            <img style="height: 35px" id="cart-icon" src="{% static 'img/logo.png' %}">#}
+{#        </a>#}
+	    	<p id="cart-total">{{cartItems}}</p>
+
+        <a class="nav-link" href="/store/static">ارتباط با ما</a>
+        <a class="nav-link" href="/store/static">محصولات</a>
+{#        <a class="nav-link" href="{% url 'index' %}">ارتباط با ما</a>#}
+{#      <a class="nav-link" href="{% url 'listings' %}">خدمات</a>#}
+{#        <a href="#">طراحی سایت</a>#}
+{#        <a href="{% url 'PrintListings' %}">چاپ</a>#}
+{#        <a href="{% url 'MarketingListings' %}">دیجیتال مارکتینگ</a>#}
+{#        <a href="{% url 'PhotoListings' %}">عکاسی و تیزر</a>#}
+{#        <a href="{% url 'LogoListings' %}">طراحی لوگو</a>#}
+{#        <a href="{% url 'GraphicListings' %}">طراحی گرافیکی</a>#}
+{#        <a class="nav-link" href="{% url 'listings' %}">نمونه کارها</a>#}
+{#        <a class="nav-link" href="{% url 'about' %}">درباره ما</a>#}
+{#        <a class="nav-link" href="{% url 'index' %}">صفحه نخست</a>#}
+
+{#      <a class="navbar-brand" href="{% url 'index' %}">#}
+{#      <img src="{% static 'img/Apple.png' %}" class="logo" alt="" style="color: #ffffff">#}
+{#        </a>#}
+
+
+{##}
+{#      <ul class="navbar-nav ml-auto">#}
+{#        {% if user.is_authenticated %}#}
+{#        <li class="nav-item mr-3">#}
+{#          <a class="nav-link" href="{% url 'dashboard' %}"> Welcome {{user.username}} (Dashboard)  </a>#}
+{#        </li>#}
+{#        <li class="nav-item mr-3">#}
+{#          <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">#}
+{#            <i class="fas fa-sign-out-alt"></i>Logout</a>#}
+{#          <form action="{% url 'logout' %}" method="POST" id="logout">#}
+{#            {% csrf_token %}#}
+{#            <input type="hidden">#}
+{#          </form>#}
+{#        </li>#}
+{#        {% else %}#}
+{#          <li class="nav-item mr-3">#}
+{#            <a class="nav-link" href="{% url 'register' %}">#}
+{#              <i class="fas fa-user-plus"></i> Register</a>#}
+{#          </li>#}
+{#          <li class="nav-item mr-3">#}
+{#            <a class="nav-link" href="{% url 'login' %}">#}
+{#              <i class="fas fa-sign-in-alt"></i>#}
+{#              Login</a>#}
+{#          </li>#}
+{#        {% endif %}#}
+{##}
+{#      </ul>#}
+{#    #}
+    </div>
+  </div>
+</nav>
+

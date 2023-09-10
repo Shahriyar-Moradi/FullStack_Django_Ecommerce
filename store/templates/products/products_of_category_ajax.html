@@ -1,0 +1,59 @@
+
+
+
+{% load static %}
+
+{% load humanize %}
+
+
+
+{% block content %}
+<div class="row" style="margin-right: 100px" id="filteredProducts" >
+        {% if data %}
+          {% for product in data %}
+          <div class="col-md-6 col-lg-4 mb-4">
+
+              <div style="max-height: 700px;max-width: 550px"  class="card listing-preview">
+
+                <img style="max-height: 700px;max-width: 550px" class="card-img-top" src="{{ product.photo_main.url }}" alt="">
+                <div  class="card-img-overlay">
+
+                    <div class="col-lg-4">
+                        <h2>
+                            <span style="margin-bottom: 20px;font-size: 18px" class="badge badge-secondary text-white">${{ product.price | intcomma }}</span>
+                        </h2>
+                        <div style="margin-top: 170px" class="box-element product">
+
+                            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+			        </div>
+		        </div>
+
+                </div>
+
+                <div class="card-body">
+
+                  <div class="listing-heading text-center">
+
+                    <h4 class="text-primary">{{ product.name }}</h4>
+                  </div>
+
+                  <div class="row py-2 text-secondary">
+                    <div class="col-12">
+                      <i class="fas fa-user"></i> {{ listing.coordinator }}</div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>No Listings Available</p>
+          </div>
+        {% endif %}
+</div>
+
+{% endblock %}

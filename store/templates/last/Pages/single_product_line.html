@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} | {{ single_product_line.product.name }} {% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">{{ single_product_line.name }}</h1>
+          <p class="lead">
+            <i class="fas fa-map-marker"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">Home</a>
+          </li>
+            <li class="breadcrumb-item">
+            <a href="{% url 'product_line_product' single_product_line.product.id %}">{{ single_product_line.product.category.name }}</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'product_line_product' single_product_line.product.id %}">{{ single_product_line }}</a>
+          </li>
+
+          <li class="breadcrumb-item active">{{ single_product_line.product.name }}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+
+
+
+    <div class="container">
+
+        <div class="info">
+            <div class="shoeName">
+                <div>
+                    <h1 class="big">کفش نایک</h1>
+                    <!-- <span class="new">جدید</span> -->
+                </div>
+                <h3 class="small">Men's running shoes</h3>
+            </div>
+            <div class="description">
+                <h3 class="title">Product Info</h3>
+                <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+            </div>
+            <div class="color-container">
+                <h3 class="title">Color</h3>
+                <div class="colors">
+                    <span class="color active" primary="#2175f5" color="blue"></span>
+                    <span class="color" primary="#f84848" color="red"></span>
+                    <span class="color" primary="#29b864" color="green"></span>
+                    <span class="color" primary="#ff5521" color="orange"></span>
+                    <span class="color" primary="#444" color="black"></span>
+                </div>
+            </div>
+            <div class="size-container">
+                <h3 class="title">size</h3>
+                <div class="sizes">
+                    <span class="size">7</span>
+                    <span class="size">8</span>
+                    <span class="size active">9</span>
+                    <span class="size">10</span>
+                    <span class="size">11</span>
+                </div>
+            </div>
+            <div class="buy-price">
+                <a href="#" class="buy"><i class="fas fa-shopping-cart"></i>Add to card</a>
+                <div class="price">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h1>{{ single_product_line.price }}</h1>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+             <img src="{{ single_product_line.photo_main}}" alt="" class="img-main img-fluid mb-3">
+              <img src="{{ single_product_line.product.photo_main}}" alt="" >
+{#              <img src = "shoes_images/shoe_2.jpg" alt = "shoe image">#}
+{#              <img src = "shoes_images/shoe_3.jpg" alt = "shoe image">#}
+{#              <img src = "shoes_images/shoe_4.jpg" alt = "shoe image">#}
+            </div>
+          </div>
+          <div class = "img-select">
+            <div class = "img-item">
+              <a href = "#" data-id = "1">
+                <img src="{{ single_product_line.product.photo_main}}" alt="" >
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                <img src="{{ single_product_line.product.photo_main}}" alt="" >
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "3">
+                <img src="{{ single_product_line.product.photo_main}}" alt="" >
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "4">
+                <img src="{{ single_product_line.product.photo_main}}" alt="" >
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+{#        <div class="card">#}
+{#            <div class="shoeBackground">#}
+{#                <div class="gradients">#}
+{#                    <div class="gradient second" color="blue"></div>#}
+{#                    <div class="gradient" color="red"></div>#}
+{#                    <div class="gradient" color="green"></div>#}
+{#                    <div class="gradient" color="orange"></div>#}
+{#                    <div class="gradient" color="black"></div>#}
+{#                </div>#}
+{#                <h1 class="nike">nike</h1>#}
+{#                <img src="img/logo.png" alt="" class="logo">#}
+{#                <a href="#" class="share"><i class="fas fa-share-alt"></i></a>#}
+{##}
+{#                <img src="img/blue.png" alt="" class="shoe show" color="blue">#}
+{#                <img src="img/red.png" alt="" class="shoe" color="red">#}
+{#                <img src="img/green.png" alt="" class="shoe" color="green">#}
+{#                <img src="img/orange.png" alt="" class="shoe" color="orange">#}
+{#                <img src="img/black.png" alt="" class="shoe" color="black">#}
+{##}
+{#            </div>#}
+{#        </div>#}
+
+    </div>
+
+
+
+
+
+
+
+  <!-- Alerts -->
+  {% include 'partials/../last/_alerts.html' %}
+
+  <!-- Listing -->
+
+{% endblock %}

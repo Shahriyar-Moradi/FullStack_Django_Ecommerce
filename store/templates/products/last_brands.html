@@ -1,0 +1,59 @@
+ {% if brands %}
+          {% for brand in brands %}
+        <div class="collapse show" id="home-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li>
+          <input type="checkbox" data-filter="brand" id="{{brand.id}}" value="{{brand.id}}" class="filter-checkbox">
+   <label for="{{brand.id}}">{{brand.name}}</label>
+          </li>
+
+          </ul>
+            {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>No Listings Available</p>
+          </div>
+        {% endif %}
+
+
+    <script>
+
+
+const productContainer = document.getElementById('product-container');
+//const productContainer = document.getElementsByClassName('.card-img-top');
+
+var filterBtns = document.getElementsByClassName('filter-checkbox')
+
+
+$(document).ready(function(){
+	$(".filter-checkbox").on('click', function(){
+		var filter_object={};
+		$(".filter-checkbox").each(function(index,ele){
+			var filter_value=$(this).val();
+			var filter_key=$(this).data('filter');
+            //console.log('filter_key',filter_key);
+			//console.log('filter_value',filter_value);
+			filter_object[filter_key]=Array.from(document.querySelectorAll('input[data-filter='+filter_key+']:checked'))
+                .map(function(el){
+			 	return el.value;
+			});
+		});
+        console.log('filterobject',filter_object)
+
+		$.ajax({
+			url:`/products/filter-data/`,
+			data:filter_object,
+			dataType:'json',
+            //beforeSend:,
+			success:function(res){
+                console.log('res',res)
+				$("#filteredProducts").html(res.data);
+			}
+		});
+	});
+});
+
+
+</script>
+
+

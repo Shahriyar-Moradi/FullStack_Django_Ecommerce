@@ -1,0 +1,83 @@
+
+
+
+{% load static %}
+
+<header class="header">
+
+    <div class="alert">
+      <div class="container">
+        <p class="alert-text">Free Shipping On All U.S. Orders $50+</p>
+      </div>
+    </div>
+
+    <div class="header-top" data-header>
+      <div class="container">
+
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+          <span class="line line-1"></span>
+          <span class="line line-2"></span>
+          <span class="line line-3"></span>
+        </button>
+
+        <div class="input-wrapper">
+          <input type="search" name="search" placeholder="Search product" class="search-field">
+
+          <button class="search-submit" aria-label="search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+
+        <a href="#" class="logo" style="margin-top: 20px">
+          <img src="{% static 'images/logo.png' %}" width="179" height="26" alt="Glowing">
+        </a>
+
+        <div class="header-actions">
+
+          <button class="header-action-btn" aria-label="user">
+            <ion-icon name="person-outline" aria-hidden="true" aria-hidden="true"></ion-icon>
+          </button>
+
+
+          <button class="header-action-btn" aria-label="favourite item">
+            <ion-icon name="heart-outline"></ion-icon>
+
+            <span class="btn-badge" style="height: 20px;width: 20px;font-size: 17px">0</span>
+          </button>
+
+          <button style="margin-right: 20px" class="header-action-btn" aria-label="cart item"><a href="{% url 'cart' %}">
+            <data class="btn-text" value="{{ cartItems  }}"></data>
+
+            <ion-icon size="large" name="bag-handle-outline" aria-hidden="true" aria-hidden="true"></ion-icon>
+
+            <span class="btn-badge" style="height: 23px;width: 23px;font-size: 18px">{{ cartItems }}</span>
+          </a></button>
+
+        </div>
+
+        <nav class="navbar" style="margin-left: 1000px; margin-top: 40px">
+          <ul class="navbar-list">
+              {% if categories %}
+              {% for category in categories %}
+
+            <li>
+              <a href="{% url 'products_by_category' category.id %}" class="navbar-link has-after">{{ category.name }}</a>
+            </li>
+              {% endfor %}
+        {% endif %}
+
+            <li>
+              <a href="#collection" class="navbar-link has-after">Collection</a>
+            </li>
+
+            <li>
+              <a href="#offer" class="navbar-link has-after">Offer</a>
+            </li>
+
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+
+  </header>

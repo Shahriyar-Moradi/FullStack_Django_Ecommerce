@@ -1,0 +1,126 @@
+<!-- Display cart items -->
+
+{% extends 'main.html' %}
+{% load static %}
+
+{% load humanize %}
+
+{% block title %} - Welcome {% endblock %}
+
+
+{% block content %}
+
+
+<div class="sidebar">
+    <div class="mobile-navbar" data-navbar>
+
+      <div class="wrapper">
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.png" width="179" height="26" alt="Glowing">
+        </a>
+
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <ul class="navbar-list">
+
+        <li>
+          <a href="#home" class="navbar-link" data-nav-link>Home</a>
+        </li>
+
+        <li>
+          <a href="#collection" class="navbar-link" data-nav-link>Collection</a>
+        </li>
+
+        <li>
+          <a href="#shop" class="navbar-link" data-nav-link>Shop</a>
+        </li>
+
+        <li>
+          <a href="#offer" class="navbar-link" data-nav-link>Offer</a>
+        </li>
+
+        <li>
+          <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="overlay" data-nav-toggler data-overlay></div>
+  </div>
+
+
+
+<div class="row">
+		<div class="col-lg-12">
+			<div class="box-element">
+
+				<a  class="btn btn-outline-dark" href="{% url 'index' %}">&#x2190; Continue Shopping</a>
+
+				<br>
+				<br>
+				<table class="table">
+					<tr>
+						<th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
+						<th><h5>Total:<strong> ${{order.get_cart_total}}</strong></h5></th>
+						<th>
+							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+						</th>
+					</tr>
+				</table>
+
+			</div>
+
+			<br>
+			<div class="box-element">
+				<div class="cart-row">
+					<div style="flex:1.5"></div>
+					<div style="flex:1"><strong>Item</strong></div>
+					<div style="flex:1"><strong>Price</strong></div>
+					<div style="flex:1"><strong>Quantity</strong></div>
+					<div style="flex:1"><strong>Total</strong></div>
+					<div style="flex:0.7"><strong>Delete</strong></div>
+				</div>
+				{% for item in items %}
+				<div class="cart-row">
+					<div style="flex:1.5"><img class="row-image" src="{{item.product.photo_main.url}}"></div>
+					<div style="flex:1"><p>{{item.product.name}}</p></div>
+					<div style="flex:1"><p>${{item.product.price|floatformat:2}}</p></div>
+
+					<div style="flex:1">
+						<p class="quantity">{{item.quantity}}</p>
+						<div class="quantity">
+							<img data-product="{{item.product.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+
+							<img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+						</div>
+					</div>
+
+					<div style="flex:1.5"><p>${{item.get_total|floatformat:2}}</p></div>
+					<div style="flex:0.5"><a data-product="{{item.product.id}}" data-action="delete" class="chg-quantity update-cart"><ion-icon size="large" name="trash-outline" ></ion-icon></a></div>
+{#                    <ion-icon size="large" name="trash-outline" ></ion-icon>#}
+				</div>
+				{% endfor %}
+
+
+			</div>
+		</div>
+	</div>
+
+
+<div id="cart-items">
+    {% for cart_item in cart_items %}
+        <div class="cart-item">
+            <h3>{{ cart_item.product.name }}</h3>
+            <p>Quantity: {{ cart_item.quantity }}</p>
+            <button class="update-quantity-btn" data-item-id="{{ cart_item.id }}">Update Quantity</button>
+        </div>
+    {% empty %}
+        <p>No items in the cart</p>
+    {% endfor %}
+</div>
+{% endblock %}

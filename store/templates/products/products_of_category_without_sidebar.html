@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load humanize %}
+
+{% block title %} - Welcome {% endblock %}
+
+{% block content %}
+
+    <h1>hello</h1>
+
+    <div class="sidebar">
+    <div class="mobile-navbar" data-navbar>
+
+      <div class="wrapper">
+        <a href="#" class="logo">
+          <img src="./assets/images/logo.png" width="179" height="26" alt="Glowing">
+        </a>
+
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <ul class="navbar-list">
+
+        <li>
+          <a href="#home" class="navbar-link" data-nav-link>Home</a>
+        </li>
+
+        <li>
+          <a href="#collection" class="navbar-link" data-nav-link>Collection</a>
+        </li>
+
+        <li>
+          <a href="#shop" class="navbar-link" data-nav-link>Shop</a>
+        </li>
+
+        <li>
+          <a href="#offer" class="navbar-link" data-nav-link>Offer</a>
+        </li>
+
+        <li>
+          <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="overlay" data-nav-toggler data-overlay></div>
+  </div>
+
+
+    <section class="section shop" id="shop" aria-label="shop" data-section>
+        <div class="container">
+
+          <div class="title-wrapper">
+            <h2 class="h2 section-title">Our Bestsellers</h2>
+
+              <span style="font-size: 22px" class="span">Shop All Products</span>
+
+              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+
+          </div>
+
+          <ul class="has-scrollbar">
+              {% if products %}
+              {% for product in products %}
+
+            <li class="scrollbar-item">
+              <div class="shop-card">
+
+                <div class="card-banner img-holder" style="--width: 540; --height: 720;max-width: 500px;max-height: 700px">
+                  <img style="max-height: 700px;max-width: 550px" src="{{ product.photo_main.url }}" width="540" height="720" loading="lazy"
+                    alt="Facial cleanser" class="img-cover">
+
+                  <span class="badge" aria-label="20% off">-20%</span>
+
+                  <div class="card-actions">
+
+                    <button class="action-btn" aria-label="add to cart">
+                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="add to whishlist">
+                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                    <button class="action-btn" aria-label="compare">
+                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+                    </button>
+
+                  </div>
+                </div>
+
+                <div class="card-content">
+
+                  <div class="price">
+                    <del class="del">$39.00</del>
+
+                    <span class="span">$29.00</span>
+                  </div>
+
+                  <h3>
+                    <a href="#" class="card-title">{{ product.name }}</a>
+                  </h3>
+
+                  <div class="card-rating">
+
+                    <div class="rating-wrapper" aria-label="5 start rating">
+                      <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    </div>
+
+                    <p class="rating-text">5170 reviews</p>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </li>
+
+             {% endfor %}
+        {% endif %}
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+    <section id="listings" class="py-4">
+    <div class="container">
+      <div class="row">
+      <h2 style="padding-top: 30px;padding-bottom: 30px">All products</h2>
+        {% if products_paged_list %}
+          {% for product in products_paged_list %}
+          <div class="col-md-6 col-lg-4 mb-4">
+
+              <div style="max-height: 700px;max-width: 550px"  class="card listing-preview">
+
+                <img style="max-height: 700px;max-width: 550px" class="card-img-top" src="{{ product.photo_main.url }}" alt="">
+                <div  class="card-img-overlay">
+
+                    <div class="col-lg-4">
+                        <h2>
+                            <span style="margin-bottom: 20px;font-size: 18px" class="badge badge-secondary text-white">${{ product.price | intcomma }}</span>
+                        </h2>
+                        <div style="margin-top: 170px" class="box-element product">
+
+                            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+{#                            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart"><a href="{% url 'add_to_cart' product.id %}">Add to Carttt</a></button>#}
+
+				<a class="btn btn-outline-success" href="#">View</a>
+
+
+			        </div>
+		        </div>
+
+                </div>
+
+                <div class="card-body">
+
+                  <div class="listing-heading text-center">
+
+                    <h4 class="text-primary">{{ product.name }}</h4>
+{#                      <a href="{% url 'product_line_product' listing.id %}" class="btn btn-primary btn-block">More Infoooo</a>#}
+{#                    <p><i class="fas fa-map-marker text-secondary"></i> {{ listing.name}}</p>#}
+                  </div>
+
+                  <div class="row py-2 text-secondary">
+                    <div class="col-12">
+                      <i class="fas fa-user"></i> {{ listing.coordinator }}</div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>No Listings Available</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          {% if products_paged_list.has_other_pages %}
+            <ul class="pagination">
+              {% if products_paged_list.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{products_paged_list.previous_page_number}}" class="page-link">&laquo;</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&laquo;</a>
+                </li>
+              {% endif %}
+              {% for i in products_paged_list.paginator.page_range %}
+                {% if products_paged_list.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                  </li>
+                {% else %}
+                  <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+              {% if listing.has_next %}
+                <li class="page-item">
+                  <a href="?page={{products_paged_list.next_page_number}}" class="page-link">&raquo;</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&raquo;</a>
+                </li>
+              {% endif %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+{% endblock %}
