@@ -49,8 +49,8 @@ def get_products_by_category(request: HttpRequest, category_id):
     category = Category.objects.get(id=category_id)
     products = Product.objects.filter(category=category).select_related('category')
 
-    all_attributes = category.category_attribute_value.all()
-    print("all_attributes", all_attributes)
+    # all_attributes = category.category_attribute_value.all()
+    # print("all_attributes", all_attributes)
     q = list(connection.queries)
     print("queries counts", len(q))
     for qs in q:
@@ -66,6 +66,16 @@ def get_products_by_category(request: HttpRequest, category_id):
         'category_id': category_id,
     }
     return render(request, 'products/products_of_category.html', context)
+
+
+def get_single_product(request: HttpRequest, product_id):
+    # product = Product.objects.filter(pk=product_id)
+    product = get_object_or_404(Product, pk=product_id)
+
+    context = {
+        'product': product,
+    }
+    return render(request, 'products/single_product.html', context)
 
 
 def get_product_line_by_product(request, product_id):
@@ -105,6 +115,8 @@ def cart(request):
 
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'products/cart.html', context)
+
+
 
 
 def checkout(request):

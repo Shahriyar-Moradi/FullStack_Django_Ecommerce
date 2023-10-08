@@ -100,7 +100,6 @@
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="#">Item 1</a></li>
       <li><a class="dropdown-item" href="#">Item 2</a></li>
-      <li><a class="dropdown-item" href="#">Item 3</a></li>
     </ul>
 
     <button type="button" class="btn btn-outline">Button Filter1</button>
@@ -114,19 +113,25 @@
     <div class="container">
     <div class="row">
         <div class="col-lg-1">
-            <div class="flex-shrink-0 p-3 bg-white" style="width: 100px;font-size: 20px;margin-left: 1300px;margin-top: 50px;">
-        <a class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            </a>
+            <div class="flex-shrink-0 p-3 bg-white" style="width: 100px;font-size: 25px;margin-left: 1300px;margin-top: 50px ">
+        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+      <span class="fs-5 fw-semibold">Collapsible</span>
+    </a>
     <ul class="list-unstyled ps-0">
+    <a href="" ></a>
       <li class="mb-1">
-        <button  style="font-size: 20px;padding-right: 20px" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          Brands
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+          Brand
         </button>
           {% if brands %}
           {% for brand in brands %}
         <div class="collapse show" id="home-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="{% url 'products_by_brand' brand.id %}" class="link-dark rounded">{{ brand.name }}</a></li>
+          <li>
+            <input type="checkbox" class="brand-checkbox" value="{{ brand.id }}" id="brand{{ brand.id }}" data-action="select">
+            <label for="brand{{ brand.id }}">{{ brand.name }}</label><br>
+
+          </li>
 
           </ul>
             {% endfor %}
@@ -135,6 +140,7 @@
             <p>No Listings Available</p>
           </div>
         {% endif %}
+
         </div>
       </li>
       <li class="mb-1">
@@ -145,8 +151,7 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="#" class="link-dark rounded">Overview</a></li>
             <li><a href="#" class="link-dark rounded">Weekly</a></li>
-            <li><a href="#" class="link-dark rounded">Monthly</a></li>
-            <li><a href="#" class="link-dark rounded">Annually</a></li>
+
           </ul>
         </div>
       </li>
@@ -164,27 +169,17 @@
         </div>
       </li>
       <li class="border-top my-3"></li>
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-          Account
-        </button>
-        <div class="collapse" id="account-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">New...</a></li>
-            <li><a href="#" class="link-dark rounded">Profile</a></li>
-            <li><a href="#" class="link-dark rounded">Settings</a></li>
-            <li><a href="#" class="link-dark rounded">Sign out</a></li>
-          </ul>
-        </div>
-      </li>
     </ul>
   </div>
     </div>
     <div class="col-lg-11" >
         <h2 style="padding-top: 5px;margin-bottom: 30px">All products</h2>
-      <div class="row" style="margin-right: 100px">
-        {% if products_brand_paged_list %}
-          {% for product in products_brand_paged_list %}
+    <div id="product-container">
+
+    </div>
+      <div class="row" style="margin-right: 100px" id="filteredProducts" >
+        {% if products %}
+          {% for product in products %}
           <div class="col-md-6 col-lg-4 mb-4">
 
               <div style="max-height: 700px;max-width: 550px"  class="card listing-preview">
@@ -199,7 +194,6 @@
                         <div style="margin-top: 170px" class="box-element product">
 
                             <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-{#                            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart"><a href="{% url 'add_to_cart' product.id %}">Add to Carttt</a></button>#}
 
 				<a class="btn btn-outline-success" href="#">View</a>
 
@@ -240,19 +234,19 @@
 
       <div class="row" style="margin-left: 70px;margin-top: 30px;margin-bottom:30px">
         <div class="col-md-12">
-          {% if products_brand_paged_list.has_other_pages %}
+          {% if products_paged_list.has_other_pages %}
             <ul class="pagination">
-              {% if products_brand_paged_list.has_previous %}
+              {% if products_paged_list.has_previous %}
                 <li class="page-item">
-                  <a href="?page={{products_brand_paged_list.previous_page_number}}" class="page-link">&laquo;</a>
+                  <a href="?page={{products_paged_list.previous_page_number}}" class="page-link">&laquo;</a>
                 </li>
               {% else %}
                 <li class="page-item disabled">
                   <a class="page-link">&laquo;</a>
                 </li>
               {% endif %}
-              {% for i in products_brand_paged_list.paginator.page_range %}
-                {% if products_brand_paged_list.number == i %}
+              {% for i in products_paged_list.paginator.page_range %}
+                {% if products_paged_list.number == i %}
                   <li class="page-item active">
                     <a class="page-link">{{i}}</a>
                   </li>
@@ -262,9 +256,9 @@
                   </li>
                 {% endif %}
               {% endfor %}
-              {% if products_brand_paged_list.has_next %}
+              {% if listing.has_next %}
                 <li class="page-item">
-                  <a href="?page={{products_brand_paged_list.next_page_number}}" class="page-link">&raquo;</a>
+                  <a href="?page={{products_paged_list.next_page_number}}" class="page-link">&raquo;</a>
                 </li>
               {% else %}
                 <li class="page-item disabled">
@@ -278,10 +272,41 @@
     </div>
   </section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script>
+    // Attach event listener to brand checkboxes
+    $('.brand-checkbox').on('change', function() {
+      fetchProducts();
+    });
 
+    function fetchProducts() {
+      // Get the selected brand IDs
+      const selectedBrands = $('.brand-checkbox:checked').map(function() {
+        return this.value;
+      }).get();
 
+      // Make AJAX request to fetch products
+        const path = window.location.pathname;
+    const pathParts = path.split('/'); // Split the path by '/'
+    const category_id = parseInt(pathParts[pathParts.length - 2]); // Assuming the category ID is the second-to-last segment in the path
+    console.log(category_id);
 
+      $.ajax({
+        url: `/products/fetch_products/${category_id}`,
+        type: 'GET',
+        data: { brands: selectedBrands },
+        dataType: 'json',
+        success: function(response) {
+            console.log('res',response)
+            $("#filteredProducts").html(response.data);
+          // Render the products in the container
 
-
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+        }
+      });
+    }
+  </script>
 
 {% endblock %}

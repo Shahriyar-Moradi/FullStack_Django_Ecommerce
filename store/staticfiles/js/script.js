@@ -60,7 +60,7 @@ const headerActive = function () {
   }
 }
 
-addEventOnElem(window, "scroll", headerActive);
+// addEventOnElem(window, "scroll", headerActive);
 
 let lastScrolledPos = 0;
 
@@ -74,7 +74,7 @@ const headerSticky = function () {
   lastScrolledPos = window.scrollY;
 }
 
-addEventOnElem(window, "scroll", headerSticky);
+// addEventOnElem(window, "scroll", headerSticky);
 
 
 

@@ -1,6 +1,6 @@
 from django.http import HttpRequest ,HttpResponse
 
-from .models import Category, Product, ProductLine,Order
+from .models import Category, Product, ProductLine,Order,CartItem
 from django.views import View
 
 from django.urls import reverse
@@ -12,12 +12,14 @@ from .utils import cookieCart, cartData, guestOrder
 
 def extra(request):
     categories = Category.objects.all()
-    parents_categories = Category.objects.filter()
-    products = Product.objects.all()
+    # parents_categories = Category.objects.filter()
+    # products = Product.objects.all()
 
     if request.user.is_authenticated:
         order, created = Order.objects.get_or_create(user=request.user)
         cartItems = order.get_cart_items
+        # items = order.order_items.all()
+        items=CartItem.objects.filter(order=order).select_related('order','product')
 
     else:
         cookieData = cookieCart(request)
@@ -26,7 +28,9 @@ def extra(request):
         items = cookieData['items']
 
     return {'categories': categories,
-            'parents_categories': parents_categories,
-            'products': products,
+            # 'parents_categories': parents_categories,
+
             'cartItems': cartItems,
+            'order': order,
+            'items': items,
             }

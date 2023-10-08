@@ -10,267 +10,229 @@
 
 {% block content %}
 
+<br>
+<br>
 
-
-    <section class="section shop" id="shop" aria-label="shop" data-section>
+    <section class="shop_grid_area section-padding-80">
         <div class="container">
 
-          <div class="title-wrapper">
-            <h2 class="h2 section-title">Our Bestsellers</h2>
+            <div class="shop_sidebar_area">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
 
-              <span style="font-size: 18px;margin-left: 900px" class="span">Shop All Products</span>
+                    <div class="widget catagory mb-50">
+                                <!-- Widget Title -->
+                        <h6 class="widget-title mb-30">Catagories</h6>
 
-              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                                <!--  Catagories  -->
+                                <div class="catagories-menu">
+                                    <ul id="menu-content2" class="menu-content collapse show">
+                                        <!-- Single Item -->
+                                        <li data-toggle="collapse" data-target="#clothing">
+                                            <a style="color: deeppink" href="#">clothing</a>
+                                            <ul class="sub-menu collapse show" id="clothing">
+                                                <li><a href="#">All</a></li>
+                                                <li><a href="#">Bodysuits</a></li>
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                                <li><a href="#">Jackets &amp; Coats</a></li>
+                                                <li><a href="#">Jeans</a></li>
 
-          </div>
+                                            </ul>
+                                        </li>
+                                        <!-- Single Item -->
+                                        <li data-toggle="collapse" data-target="#shoes" class="collapsed">
+                                            <a style="color: deeppink" href="#">shoes</a>
+                                            <ul class="sub-menu collapse" id="shoes">
+                                                <li><a href="#">All</a></li>
+                                                <li><a href="#">Bodysuits</a></li>
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                                <li><a href="#">Jackets &amp; Coats</a></li>
+                                                <li><a href="#">Jeans</a></li>
+                                              >
+                                            </ul>
+                                        </li>
+                                        <!-- Single Item -->
+                                        <li data-toggle="collapse" data-target="#accessories" class="collapsed">
+                                            <a style="color: deeppink" href="#">accessories</a>
 
-          <ul class="has-scrollbar">
-              {% if products %}
-              {% for product in products %}
+                                            <ul class="sub-menu collapse" id="accessories">
+                                                <li><a href="#">All</a></li>
+                                                <li><a href="#">Bodysuits</a></li>
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                                <li><a href="#">Jackets &amp; Coats</a></li>
+                                                <li><a href="#">Jeans</a></li>
 
-            <li class="scrollbar-item">
-              <div class="shop-card">
+                                            </ul>
 
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;max-width: 500px;max-height: 700px">
-                  <img style="max-height: 700px;max-width: 550px" src="{{ product.photo_main.url }}" width="540" height="720" loading="lazy"
-                    alt="Facial cleanser" class="img-cover">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
-                  <span class="badge" aria-label="20% off">-20%</span>
 
-                  <div class="card-actions">
+                        </div>
 
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
+                        <!-- ##### Single Widget ##### -->
 
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
+                        <div class="col-lg-3 col-md-4">
+                        <!-- ##### Single Widget ##### -->
+                        <div class="widget price mb-50">
+                            <!-- Widget Title -->
+                            <h6 class="widget-title mb-30">Filter by</h6>
+                            <!-- Widget Title 2 -->
+                            <p class="widget-title2 mb-30">Price</p>
 
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
+                            <div class="widget-desc">
+                                <div class="slider-range">
+                                    <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
+                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                    </div>
+                                    <div class="range-price">Range: $49.00 - $360.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
 
-                  </div>
-                </div>
+                        <!-- ##### Single Widget ##### -->
+                        <div class="col-lg-3 col-md-4">
+                        <div class="widget color mb-50">
+                            <!-- Widget Title 2 -->
+                            <p style="color: black" class="widget-title2 mb-30">Color</p>
+                            <div class="widget-desc">
+                                <ul class="d-flex">
+                                    <li><a href="#" class="color1"></a></li>
+                                    <li><a href="#" class="color2"></a></li>
+                                    <li><a href="#" class="color3"></a></li>
+                                    <li><a href="#" class="color4"></a></li>
+                                    <li><a href="#" class="color5"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        </div>
 
-                <div class="card-content">
-
-                  <div class="price">
-                    <del class="del">$39.00</del>
-
-                    <span class="span">$29.00</span>
-                  </div>
-
-                  <h3>
-                    <a href="#" class="card-title">{{ product.name }}</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <!-- ##### Single Widget ##### -->
+                        <div class="col-lg-3 col-md-4">
+                        <div class="widget brands mb-50">
+                            <!-- Widget Title 2 -->
+                            <p class="widget-title2 mb-30">Brands</p>
+                            <div class="widget-desc">
+                                {% if brands %}
+                                {% for brand in brands %}
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" class="brand-checkbox" value="{{ brand.id }}" id="brand{{ brand.id }}" data-action="select">
+                                        <label for="brand{{ brand.id }}">{{ brand.name }}</label><br>
+                                    </li>
+                                </ul>
+                                {% endfor %}
+                                {% else %}
+                                    <div class="col-md-12">
+                                        <p>No Listings Available</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        </div>
                     </div>
 
-                    <p class="rating-text">5170 reviews</p>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-             {% endfor %}
-        {% endif %}
-          </ul>
-
-        </div>
-      </section>
-
-
-
-
-<div style="margin-left: 1200px" class="buttons-container d-inline">
-<button class="btn btn-outline dropdown-toggle" type="button" data-bs-toggle="dropdown">Dropdown Button</button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Item 1</a></li>
-      <li><a class="dropdown-item" href="#">Item 2</a></li>
-    </ul>
-
-    <button type="button" class="btn btn-outline">Button Filter1</button>
-    <button type="button" class="btn btn-outline">Button Filter2</button>
-    <button type="button" class="btn btn-outline">Button Filter3 </button>
-  </div>
-    <hr style="max-width: 1100px;margin-left: 550px">
-
-
-    <section id="listings" class="py-4">
-    <div class="container">
-    <div class="row">
-        <div class="col-lg-1">
-            <div class="flex-shrink-0 p-3 bg-white" style="width: 100px;font-size: 25px;margin-left: 1300px;margin-top: 50px ">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-      <span class="fs-5 fw-semibold">Collapsible</span>
-    </a>
-    <ul class="list-unstyled ps-0">
-    <a href="" ></a>
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          Brand
-        </button>
-          {% if brands %}
-          {% for brand in brands %}
-        <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-          <li>
-            <input type="checkbox" class="brand-checkbox" value="{{ brand.id }}" id="brand{{ brand.id }}" data-action="select">
-            <label for="brand{{ brand.id }}">{{ brand.name }}</label><br>
-
-          </li>
-
-          </ul>
-            {% endfor %}
-        {% else %}
-          <div class="col-md-12">
-            <p>No Listings Available</p>
-          </div>
-        {% endif %}
-
-        </div>
-      </li>
-      <li class="mb-1">
-        <button style="font-size: 20px" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          Filters
-        </button>
-        <div class="collapse" id="dashboard-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">Overview</a></li>
-            <li><a href="#" class="link-dark rounded">Weekly</a></li>
-
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-          Orders
-        </button>
-        <div class="collapse" id="orders-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" class="link-dark rounded">New</a></li>
-            <li><a href="#" class="link-dark rounded">Processed</a></li>
-            <li><a href="#" class="link-dark rounded">Shipped</a></li>
-            <li><a href="#" class="link-dark rounded">Returned</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="border-top my-3"></li>
-    </ul>
-  </div>
-    </div>
-    <div class="col-lg-11" >
-        <h2 style="padding-top: 5px;margin-bottom: 30px">All products</h2>
-    <div id="product-container">
-
-    </div>
-      <div class="row" style="margin-right: 100px" id="filteredProducts" >
-        {% if products %}
-          {% for product in products %}
-          <div class="col-md-6 col-lg-4 mb-4">
-
-              <div style="max-height: 700px;max-width: 550px"  class="card listing-preview">
-
-                <img style="max-height: 700px;max-width: 550px" class="card-img-top" src="{{ product.photo_main.url }}" alt="">
-                <div  class="card-img-overlay">
-
-                    <div class="col-lg-4">
-                        <h2>
-                            <span style="margin-bottom: 20px;font-size: 18px" class="badge badge-secondary text-white">${{ product.price | intcomma }}</span>
-                        </h2>
-                        <div style="margin-top: 170px" class="box-element product">
-
-                            <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-
-				<a class="btn btn-outline-success" href="#">View</a>
-
-			        </div>
-		        </div>
-
-                </div>
-
-                <div class="card-body">
-
-                  <div class="listing-heading text-center">
-
-                    <h4 class="text-primary">{{ product.name }}</h4>
-{#                      <a href="{% url 'product_line_product' listing.id %}" class="btn btn-primary btn-block">More Infoooo</a>#}
-{#                    <p><i class="fas fa-map-marker text-secondary"></i> {{ listing.name}}</p>#}
-                  </div>
-
-                  <div class="row py-2 text-secondary">
-                    <div class="col-12">
-                      <i class="fas fa-user"></i> {{ listing.coordinator }}</div>
-                  </div>
-
-                </div>
-
-              </div>
-
-
             </div>
-          {% endfor %}
-        {% else %}
-          <div class="col-md-12">
-            <p>No Listings Available</p>
-          </div>
-        {% endif %}
-      </div>
-    </div>
-    </div>
 
-      <div class="row" style="margin-left: 70px;margin-top: 30px;margin-bottom:30px">
-        <div class="col-md-12">
-          {% if products_paged_list.has_other_pages %}
-            <ul class="pagination">
-              {% if products_paged_list.has_previous %}
-                <li class="page-item">
-                  <a href="?page={{products_paged_list.previous_page_number}}" class="page-link">&laquo;</a>
-                </li>
-              {% else %}
-                <li class="page-item disabled">
-                  <a class="page-link">&laquo;</a>
-                </li>
-              {% endif %}
-              {% for i in products_paged_list.paginator.page_range %}
-                {% if products_paged_list.number == i %}
-                  <li class="page-item active">
-                    <a class="page-link">{{i}}</a>
-                  </li>
-                {% else %}
-                  <li class="page-item">
-                    <a href="?page={{i}}" class="page-link">{{i}}</a>
-                  </li>
-                {% endif %}
-              {% endfor %}
-              {% if listing.has_next %}
-                <li class="page-item">
-                  <a href="?page={{products_paged_list.next_page_number}}" class="page-link">&raquo;</a>
-                </li>
-              {% else %}
-                <li class="page-item disabled">
-                  <a class="page-link">&raquo;</a>
-                </li>
-              {% endif %}
-            </ul>
-          {% endif %}
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="shop_grid_product_area">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="product-topbar d-flex align-items-center justify-content-between">
+                                    <!-- Total Products -->
+                                    <div class="total-products">
+                                        <p><span>186</span> products found</p>
+                                    </div>
+                                    <!-- Sorting -->
+                                    <div class="product-sorting d-flex">
+                                        <p>Sort by:</p>
+                                        <form action="#" method="get">
+                                            <select name="select" id="sortByselect">
+                                                <option value="value">Highest Rated</option>
+                                                <option value="value">Newest</option>
+                                                <option value="value">Price: $$ - $</option>
+                                                <option value="value">Price: $ - $$</option>
+                                            </select>
+                                            <input type="submit" class="d-none" value="">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="filteredProducts" >
+                        {% if products %}
+                            {% for product in products %}
+
+                            <!-- Single Product -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-wrapper">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="{{ product.photo_main.url }}" alt="">
+                                        <!-- Hover Thumb -->
+                                        <img class="hover-img" src="{% static 'images/collection-1.jpg' %}" alt="">
+
+                                        <!-- Product Badge -->
+                                        <div class="product-badge offer-badge">
+                                            <span>-30%</span>
+                                        </div>
+                                        <!-- Favourite -->
+                                        <div class="product-favourite">
+                                            <a href="#" class="favme fa fa-heart"></a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+
+                                        <a href="{% url 'single_product' product.id%}">
+                                            <h6>{{ product.name}}</h6>
+                                        </a>
+                                        <p class="product-price"><span class="old-price">${{ product.price | intcomma }}</span> $55.00</p>
+
+                                        <!-- Hover Content -->
+
+                                        <div style="margin-left: 10px;margin-top:20px;padding: 10px" class="hover-content d-flex justify-content-end">
+                                            <!-- Add to Cart -->
+                                            <div class="add-to-cart-btn">
+
+                                                <button style="padding: 0" data-product="{{product.id}}" data-action="add" class="btn btn-outline-light add-btn update-cart"><ion-icon size="large" name="bag-handle-outline"></ion-icon></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                             {% endfor %}
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
+
+
+
+
+
+
+
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <script>

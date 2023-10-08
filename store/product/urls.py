@@ -21,6 +21,9 @@ urlpatterns = [
     path('', views.index, name='index'),
     # path('add-to-cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
     path('cart/', views.cart, name="cart"),
+    # path('categories/<category_id>/product/<product_id>', views.get_single_product, name="single_product"),
+    path('product/<product_id>/', views.get_single_product, name="single_product"),
+
     path('checkout/', views.checkout, name="checkout"),
     path('update_item/', views.updateItem, name="update_item"),
     path('products/fetch_products/<category_id>',views.fetch_products,name="fetch_products"),

@@ -3,81 +3,166 @@
 
 {% load static %}
 
-<header class="header">
+    <!-- ##### Header Area Start ##### -->
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <div class="header-meta d-flex clearfix justify-content-start">
 
-    <div class="alert">
-      <div class="container">
-        <p class="alert-text">Free Shipping On All U.S. Orders $50+</p>
-      </div>
-    </div>
+                <!-- Favourite Area -->
+                <div class="favourite-area">
+                    <a href="#"><ion-icon size="large"  name="heart-outline"></ion-icon></a>
+                </div>
+                <!-- User Login Info -->
+                <div class="user-login-info">
+                    <a href="#"><ion-icon size="large"  name="person-outline"></ion-icon></a>
+                </div>
+                <!-- Cart Area -->
+                <div class="cart-area">
+{#                    <button style="padding: 0;margin-top: 10px" class="btn btn-light cart"><ion-icon size="large" name="bag-handle-outline"></ion-icon><span>{{ cartItems  }}</span></button>#}
+                    <a class="mycart" href="#" id="essenceCartBtn"><ion-icon size="large" name="bag-handle-outline"></ion-icon><span>{{ cartItems  }}</span></a>
+                </div>
+                <div class="search-area">
+                    <form action="#" method="post">
+                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                        <button type="submit"><ion-icon size="large" name="search-outline"></ion-icon></button>
+                    </form>
+                </div>
+            </div>
+            <!-- Classy Menu -->
+            <nav class="classy-navbar" id="essenceNav">
+                <!-- Logo -->
+                <a class="nav-brand" href="index.html"><ion-icon size="large" name="bag-handle-outline"></ion-icon></a>
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <!-- Menu -->
+                <div class="classy-menu">
+                    <!-- close btn -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+                    <!-- Nav Start -->
+                    <div class="d-flex justify-content-end">
+                    <div class="classynav">
+                        <ul>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="#">Shop</a>
+                                <div class="megamenu">
 
-    <div class="header-top" data-header>
-      <div class="container">
+                                        {% if categories %}
+                                            {% for category in categories %}
+                                    <ul class="single-mega cn-col-5">
+                                    <div class="d-flex justify-content-end">
+                                        <li class="title"><a href="{% url 'products_by_category' category.id %}">{{ category.name}}</a></li>
+                                    </div>
+                                        <div class="d-flex justify-content-end">
+                                        <li><a href="shop.html">Dresses</a></li>
+                                        </div><div class="d-flex justify-content-end">
+                                        <li><a href="shop.html">Dresses</a></li>
+                                        </div><div class="d-flex justify-content-end">
+                                        <li><a href="shop.html">Dresses</a></li>
+                                        </div>
+                                    </ul>
+                                         {% endfor %}
+                                        {% else %}
+                                          <div class="col-md-12">
+                                            <p>No Listings Available</p>
+                                          </div>
+                                        {% endif %}
 
-        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-          <span class="line line-1"></span>
-          <span class="line line-2"></span>
-          <span class="line line-3"></span>
-        </button>
+                                </div>
+                            </li>
+                            <li><a href="#">Pages</a>
+                                <ul class="dropdown">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="single-product-details.html">Product Details</a></li>
+                                    <li><a href="checkout.html">Checkout</a></li>
 
-        <div class="input-wrapper">
-          <input type="search" name="search" placeholder="Search product" class="search-field">
+                                    <li><a href="single-blog.html">Single Blog</a></li>
+                                    <li><a href="regular-page.html">Regular Page</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </li>
 
-          <button class="search-submit" aria-label="search">
-            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-          </button>
+
+                        </ul>
+
+                    </div>
+                    </div>
+                    <!-- Nav End -->
+                </div>
+            </nav>
+
+            <!-- Header Meta Data -->
+
+
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+
+
+    <!-- ##### Right Side Cart Area ##### -->
+    <div class="cart-bg-overlay"></div>
+
+    <div class="right-side-cart-area">
+
+        <!-- Cart Button -->
+        <div class="cart-button">
+            <a href="#" id="rightSideCart"><ion-icon size="large" name="bag-handle-outline"></ion-icon> <span>{{ cartItems }}</span></a>
         </div>
 
-        <a href="#" class="logo" style="margin-top: 20px">
-          <img src="{% static 'images/logo.png' %}" width="179" height="26" alt="Glowing">
-        </a>
+        <div class="cart-content d-flex">
 
-        <div class="header-actions">
+            <!-- Cart List Area -->
+            <div class="cart-list">
+                <!-- Single Cart Item -->
+                {% for item in items %}
+                <div class="single-cart-item">
 
-          <button class="header-action-btn" aria-label="user">
-            <ion-icon name="person-outline" aria-hidden="true" aria-hidden="true"></ion-icon>
-          </button>
+                    <a href="#" class="product-image">
+                        <img src="{{item.product.photo_main.url}}" class="cart-thumb" alt="">
+                        <!-- Cart Item Desc -->
+                        <div class="cart-item-desc">
+                          <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
+                            <span class="badge">{{ item.product.name }}</span>
+                            <h6>{{ item.product.name }}</h6>
+                            <p class="size">Size: S</p>
+                            <p class="color">Color: Red</p>
+                            <p class="price">$45.00</p>
+                        </div>
 
+                    </a>
+                </div>
+                    {% endfor %}
 
-          <button class="header-action-btn" aria-label="favourite item">
-            <ion-icon name="heart-outline"></ion-icon>
+            </div>
 
-            <span class="btn-badge" style="height: 20px;width: 20px;font-size: 17px">0</span>
-          </button>
+            <!-- Cart Summary -->
+            <div class="cart-amount-summary">
 
-          <button style="margin-right: 20px" class="header-action-btn" aria-label="cart item"><a href="{% url 'cart' %}">
-            <data class="btn-text" value="{{ cartItems  }}"></data>
+                <h2>Summary</h2>
 
-            <ion-icon size="large" name="bag-handle-outline" aria-hidden="true" aria-hidden="true"></ion-icon>
+                <ul class="summary-table">
+                    <li><span>subtotal:</span> <span>{{ cartItems }}</span></li>
+                    <li><span>delivery:</span> <span>Free</span></li>
+                    <li><span>discount:</span> <span>-15%</span></li>
+                    <li><span>total:</span> <span>$232.00</span></li>
 
-            <span class="btn-badge" style="height: 23px;width: 23px;font-size: 18px">{{ cartItems }}</span>
-          </a></button>
-
+                </ul>
+                <div class="checkout-btn mt-100">
+                    <a href="{% url 'cart' %}" class="btn essence-btn">cart</a>
+                    <a href="{% url 'checkout' %}" class="btn essence-btn">check out</a>
+                </div>
+            </div>
         </div>
-
-        <nav class="navbar" style="margin-left: 1000px; margin-top: 40px">
-          <ul class="navbar-list">
-              {% if categories %}
-              {% for category in categories %}
-
-            <li>
-              <a href="{% url 'products_by_category' category.id %}" class="navbar-link has-after">{{ category.name }}</a>
-            </li>
-              {% endfor %}
-        {% endif %}
-
-            <li>
-              <a href="#collection" class="navbar-link has-after">Collection</a>
-            </li>
-
-            <li>
-              <a href="#offer" class="navbar-link has-after">Offer</a>
-            </li>
-
-          </ul>
-        </nav>
-
-      </div>
     </div>
+    <!-- ##### Right Side Cart End ##### -->
 
-  </header>
+<script>
+    // Attach event listener to brand checkboxes
+
+  </script>

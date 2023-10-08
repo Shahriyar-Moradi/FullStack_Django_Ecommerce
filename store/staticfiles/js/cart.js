@@ -41,6 +41,42 @@ function updateUserOrder(productId, action){
 }
 
 
+function addCookieItem(productId, action){
+	console.log('User is not authenticated')
+
+	if (action == 'add'){
+		if (cart[productId] == undefined){
+		cart[productId] = {'quantity':1}
+
+		}else{
+			cart[productId]['quantity'] += 1
+		}
+	}
+
+	if (action == 'decrease'){
+		cart[productId]['quantity'] -= 1
+
+		if (cart[productId]['quantity'] <= 0){
+			console.log('Item should be deleted')
+			delete cart[productId];
+		}
+	}
+	if (action == 'remove'){
+		// cart[productId]['quantity'] -= 1
+
+		if (cart[productId]['quantity'] <= 0){
+			console.log('Item should be deleted')
+			delete cart[productId];
+		}
+	}
+	console.log('CART:', cart)
+	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+	location.reload()
+}
+
+
+
 
 
 // Create a promise with a listener that returns true
@@ -77,29 +113,86 @@ promiseWithListener
 
 
 
+//
 
-function addCookieItem(productId, action){
-	console.log('User is not authenticated')
 
-	if (action == 'add'){
-		if (cart[productId] == undefined){
-		cart[productId] = {'quantity':1}
 
-		}else{
-			cart[productId]['quantity'] += 1
-		}
-	}
+//
+// const productContainer = document.getElementById('product-container');
+// var filterBtns = document.getElementsByClassName('filter-checkbox')
+// var user = '{{request.user}}'
 
-	if (action == 'remove'){
-		cart[productId]['quantity'] -= 1
+// for (i = 0; i < filterBtns.length; i++) {
+// 	filterBtns[i].addEventListener('click', function(){
+//         let category_id=this.dataset.category
+// 		var brandId = this.dataset.brand
+// 		var action = this.dataset.action
+//         var user = '{{ user.username }}';
+// 		console.log('brandId:',brandId, 'Action:', action,'category_id',category_id)
+// 		console.log('USER:', user)
+//
+// 		if (user === 'AnonymousUser'){
+// 			addCookieItem(brandId, action)
+// 		}else{
+//             console.log('authenticated')
+// 			updateBrand(brandId, action,)
+// 		}
+// 	})
+// }
+// function updateBrand(brandId){
+// 	console.log('User is authenticated, sending brand data...')
+//     const path = window.location.pathname;
+//     const pathParts = path.split('/'); // Split the path by '/'
+//     const category_id = parseInt(pathParts[pathParts.length - 2]); // Assuming the category ID is the second-to-last segment in the path
+//     console.log(category_id);
+//
+// 		var url = `/categories/${category_id}/brand/${brandId}/`
+//
+// 		fetch(url, {
+// 			method:'GET',
+// 			headers:{
+// 				'Content-Type':'application/json',
+// 				'X-CSRFToken':csrftoken,
+// 			},
+//
+// 			{#body:JSON.stringify({'brandId':brandId, 'action':action})#}
+// 		})
+// 		.then((response) => {
+// 		   return response.json();
+// 		}).then(data => {
+//     data.brands_products.forEach(product => {
+//       const productHTML = `
+//         <div class="product-card">
+//           <h3>${product.name}</h3>
+//           <p>Price: $${product.price}</p>
+//           <img style="max-height: 700px;max-width: 550px" class="card-img-top" src="${product.photo_main.url}" alt="">
+//
+//         </div>
+//       `;
+//
+//       productContainer.insertAdjacentHTML('beforeend', productHTML);
+//     });
+//   })
+//
 
-		if (cart[productId]['quantity'] <= 0){
-			console.log('Item should be deleted')
-			delete cart[productId];
-		}
-	}
-	console.log('CART:', cart)
-	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 
-	location.reload()
-}
+
+// }
+// var filterBtns = document.getElementsByClassName('filter-checkbox').addEventListener('click', fetchProducts);
+// for (i = 0; i < filterBtns.length; i++) {
+// 	filterBtns[i].addEventListener('click', function(){
+//         let category_id=this.dataset.category
+// 		var brandId = this.dataset.brand
+// 		var action = this.dataset.action
+//         var user = '{{ user.username }}';
+// 		console.log('brandId:',brandId, 'Action:', action,'category_id',category_id)
+// 		console.log('USER:', user)
+//
+// 		if (user === 'AnonymousUser'){
+// 			addCookieItem(brandId, action)
+// 		}else{
+//             console.log('authenticated')
+// 			updateBrand(brandId, action,)
+// 		}
+// 	})
+// }

@@ -3,7 +3,9 @@
 var updateBtns = document.getElementsByClassName('update-cart')
 var user = '{{request.user}}'
 for (i = 0; i < updateBtns.length; i++) {
-	updateBtns[i].addEventListener('click', function(){
+	updateBtns[i].addEventListener('click', function(event){
+		event.preventDefault(); // Prevent default form submission
+
 		var productId = this.dataset.product
 		var action = this.dataset.action
         var user = '{{ user.username }}';
@@ -72,7 +74,7 @@ function addCookieItem(productId, action){
 	console.log('CART:', cart)
 	document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
 
-	location.reload()
+	// location.reload()
 }
 
 
